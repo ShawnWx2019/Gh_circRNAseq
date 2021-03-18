@@ -200,3 +200,4 @@ p = sankeyNetwork(Links = data$link, Nodes = data$node,Value = "score",LinkGroup
                   Source = "sourceID", Target = 'targetID',
                   NodeID = "node",nodeWidth = 20, fontSize = 12,height = 600, width = 1200)
 saveNetwork(p, "./test.html", selfcontained = TRUE)
+

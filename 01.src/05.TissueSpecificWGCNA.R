@@ -174,7 +174,7 @@ moduleheatmap = function(datExpr,MEs,which.module){
                   Eigengene = ME)
   p1 = ggplot(x, aes(Var2, Var1)) + 
     geom_tile(aes(fill = value),colour = alpha("white",0)) + 
-    scale_fill_gradient2(low = "green",mid = "black",high = "red")+
+    scale_fill_gradient2(low = "#FFD700",mid = "black",high = "#FF00FF")+
     theme_classic()+
     theme(legend.position = "none",
           axis.title = element_blank(),
@@ -196,6 +196,7 @@ moduleheatmap = function(datExpr,MEs,which.module){
 p3 = moduleheatmap(datExpr = datExpr,MEs=MEs,which.module = "blue")
 p3
 p4 = moduleheatmap(datExpr = datExpr,MEs = MEs, which.module = "turquoise")
+p4
 ggsave(filename = "~/03.Project/03.circRNA/CircRNAVersion3/03.process/01.Indentification/01.WGCNA/CircModule.blue.pdf",plot = p3,width = 12,height = 7,dpi = 300)
 ggsave(filename = "~/03.Project/03.circRNA/CircRNAVersion3/03.process/01.Indentification/01.WGCNA/CircModule.blue.tiff",plot = p3,width = 12,height = 7,dpi = 300)
 ggsave(filename = "~/03.Project/03.circRNA/CircRNAVersion3/03.process/01.Indentification/01.WGCNA/CircModule.turquoise.pdf",plot = p4,width = 12,height = 7,dpi = 300)
