@@ -21,9 +21,9 @@ p =ggplot(data = table,mapping = aes(x = chr,y = number,fill = Subgenome)) +
   scale_fill_brewer(palette = 'Accent')+
   labs(y = "CircRNA number") +
   theme_bw()+
-  geom_text(aes(label = table$number),size = 3, vjust = -0.2,hjust = 0.5)+
-  theme(axis.text.x = element_text(angle = 90,vjust = 0.5),legend.position = "top",axis.title.x = element_blank(),
-        panel.grid = element_line(linetype = "dashed",colour = "grey",size = 0.1),
+  geom_text(aes(label = table$number),size = 3, vjust = -0,hjust = 0)+
+  theme(axis.text.x = element_text(angle = 90,vjust = 0),legend.position = "top",axis.title.x = element_blank(),
+        panel.grid = element_line(linetype = "dashed",colour = "grey",size = 0),
         panel.border = element_rect(size = 1),
         strip.background = element_rect(size = 1,fill = "#FAFAD2"),
         strip.text = element_text(face = "bold.italic"))

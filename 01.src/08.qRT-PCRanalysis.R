@@ -185,7 +185,7 @@ unique(x2$Primer)
 # ggplot(data = Expvalue,mapping = aes(x = RNAseq, y = qPCR))+
 #   geom_point(size = 1)+
 #   geom_smooth(method="lm")+
-#   geom_text(aes(x=-2,y=0.7,label=lm_eqn(Expvalue)),parse=T)+
+#   geom_text(aes(x=-2,y=0,label=lm_eqn(Expvalue)),parse=T)+
 #   theme_light()+
 #   geom_hline(aes(yintercept=0), colour="black", linetype="dashed")+
 #   geom_vline(aes(xintercept = 0), color = "black", linetype = "dashed")+

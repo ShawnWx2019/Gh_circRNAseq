@@ -191,7 +191,7 @@ circos.clear() ## cleaning last work
 circos.genomicInitialize(chr,major.by = 30000000)
 ## colored At and Dt subgenome with different color
 chrcolor = rep(c("turquoise","#FF6347"),each = 13)
-circos.genomicTrackPlotRegion(chr,ylim=c(0,0.1),track.height=0.03,bg.col=chrcolor,cell.padding=c(0.01, 0.5, 0.01, 0.5),track.margin=c(0, 0))
+circos.genomicTrackPlotRegion(chr,ylim=c(0,0),track.height=0.03,bg.col=chrcolor,cell.padding=c(0.01, 0, 0.01, 0),track.margin=c(0, 0))
 ## gene density heatmap
 min1 = quantile(demo$value)[1]
 quant25 = quantile(demo$value)[2]
@@ -199,21 +199,21 @@ mid = quantile(demo$value)[3]
 quant75 = quantile(demo$value)[4]
 max = quantile(demo$value)[5]
 col_fun = colorRamp2(c(min1,quant75, max), c("green","black","red"))
-circos.genomicTrack(demo, numeric.column = 4,track.height = 0.06,ylim = c(0,1.2),
+circos.genomicTrack(demo, numeric.column = 4,track.height = 0.06,ylim = c(0,1),
                     panel.fun = function(region,value,...){
                       circos.genomicRect(region, value, col = col_fun(value[[1]]), border = NA)
                     })
 circos.genomicTrack(bed_list, track.height = 0.06,
                     panel.fun = function(region, value, ...) {
                       i = getI(...)
-                      circos.genomicPoints(region, value, pch = 16, cex = 0.3, col = i, ...)
+                      circos.genomicPoints(region, value, pch = 16, cex = 0, col = i, ...)
                     })
 ## links
 
 ## background2 mi2mRNA
-circos.genomicLink(link1.mi, link1.mRNA, col = "#80b1d3", border = "#80b1d3", lwd = 0.15)
+circos.genomicLink(link1.mi, link1.mRNA, col = "#80b1d3", border = "#80b1d3", lwd = 05)
 ## link3 all mi2circ
-circos.genomicLink(circPos, mi.Pos, col = "#bf5b17", border = "#bf5b17", lwd = 0.75)
+circos.genomicLink(circPos, mi.Pos, col = "#bf5b17", border = "#bf5b17", lwd = 05)
 ## background1 mi2circRNA
 circos.genomicLink(link2.mi, link2.circ, col = "#f0027f", border = "#f0027f", lwd = 1)
 

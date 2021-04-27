@@ -5,9 +5,9 @@
 #     Date: Sep 23, 2020
 ###############################################
 ## SPE(single parent expressed) and NAE(none additivity expressed) was thought of one of the factor driving heterosis
-## Reference ==> Luo, Z., Qian, J., Chen, S., Li, L., 2019. Dynamic patterns of circular and linear RNAs in maize hybrid and parental lines. Theoretical and Applied Genetics.. doi:10.1007/s00122-019-03489-9
-## CPM <0.1 in one parent and >1 in other parent
-## CPM <0.1 in hybrid and > 1 in at least in one of its parents
+## Reference ==> Luo, Z., Qian, J., Chen, S., Li, L., 2019. Dynamic patterns of circular and linear RNAs in maize hybrid and parental lines. Theoretical and Applied Genetics.. doi:10007/s00122-019-03489-9
+## CPM <0 in one parent and >1 in other parent
+## CPM <0 in hybrid and > 1 in at least in one of its parents
 ##===============01.prepare========================
 setwd("~/03.project/03.circRNA/CircRNAVersion3/03.process/06.SPENAE/")
 library(dplyr)
@@ -34,13 +34,13 @@ cpmlist = list(fiber = data.frame(cpm(fiber)),
                ovule = data.frame(cpm(ovule)))
 head(cpmlist$fiber)
 head(cpmlist[[1]])
-## 2. function to judge expressed or not with cutoff cpm < 0.1 & cpm > 1 in at least two of three samples of each cultivar
+## 2. function to judge expressed or not with cutoff cpm < 0 & cpm > 1 in at least two of three samples of each cultivar
 AddTags = function(cpm){
   for (i in 1:nrow(cpm)) {
     ## Hybrid
     if (sum(cpm[i,1:3] > 1) > 1) {
       cpm[i,10] <- "Ture"
-    }else if (sum(cpm[i,1:3] < .1) > 1) {
+    }else if (sum(cpm[i,1:3] < ) > 1) {
       cpm[i,10] <- "False"
     }else {
       cpm[i,10] <- "None"
@@ -48,7 +48,7 @@ AddTags = function(cpm){
     ## Maternal
     if (sum(cpm[i,4:6] > 1) > 1) {
       cpm[i,11] <- "Ture"
-    }else if (sum(cpm[i,4:6] < .1) > 1) {
+    }else if (sum(cpm[i,4:6] < ) > 1) {
       cpm[i,11] <- "False"
     }else {
       cpm[i,11] <- "None"
@@ -56,7 +56,7 @@ AddTags = function(cpm){
     ## Paternal
     if (sum(cpm[i,7:9] > 1) > 1) {
       cpm[i,12] <- "Ture"
-    }else if (sum(cpm[i,7:9] < .1) > 1) {
+    }else if (sum(cpm[i,7:9] < ) > 1) {
       cpm[i,12] <- "False"
     }else {
       cpm[i,12] <- "None"

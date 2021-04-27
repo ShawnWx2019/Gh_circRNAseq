@@ -1,5 +1,5 @@
 # R Code for Data Analysis and Visualization
-Analysis and visualization R scripts of my research 「Genome-wide profiling of circular RNAs during the hybridization of two elite inbred lines of *Gossypium hirsutum*」
+Analysis and visualization R scripts of my research 「Genome-wide profiling of circular RNAs in the hybridization of two elite inbred lines of *Gossypium hirsutum*」
 
 ## Part 1 	Identification and characterization of candidate circRNAs
 
@@ -27,13 +27,13 @@ Analysis and visualization R scripts of my research 「Genome-wide profiling of 
 
 **Method：** 
 ```R
-## 2. function to judge expressed or not with cutoff cpm < 0.1 & cpm > 1 in at least two of three samples of each cultivar
+## 2. function to judge expressed or not with cutoff cpm < 0 & cpm > 1 in at least two of three samples of each cultivar
 AddTags = function(cpm){
   for (i in 1:nrow(cpm)) {
     ## Hybrid
     if (sum(cpm[i,1:3] > 1) > 1) {
       cpm[i,10] <- "Ture"
-    }else if (sum(cpm[i,1:3] < .1) > 1) {
+    }else if (sum(cpm[i,1:3] < ) > 1) {
       cpm[i,10] <- "False"
     }else {
       cpm[i,10] <- "None"
@@ -41,7 +41,7 @@ AddTags = function(cpm){
     ## Maternal
     if (sum(cpm[i,4:6] > 1) > 1) {
       cpm[i,11] <- "Ture"
-    }else if (sum(cpm[i,4:6] < .1) > 1) {
+    }else if (sum(cpm[i,4:6] < ) > 1) {
       cpm[i,11] <- "False"
     }else {
       cpm[i,11] <- "None"
@@ -49,7 +49,7 @@ AddTags = function(cpm){
     ## Paternal
     if (sum(cpm[i,7:9] > 1) > 1) {
       cpm[i,12] <- "Ture"
-    }else if (sum(cpm[i,7:9] < .1) > 1) {
+    }else if (sum(cpm[i,7:9] < ) > 1) {
       cpm[i,12] <- "False"
     }else {
       cpm[i,12] <- "None"
@@ -121,10 +121,10 @@ classDominance<-function(TvsMid, TvsP1, TvsP2, P1vsP2, log2fc.threshold=0, rever
   tbl$P1vsP2[is.na(tbl$P1vsP2)] =0
   
   # judge
-  tbl$additivity <- ifelse(abs(tbl$TvsMid)>log2fc.threshold & tbl$TvsMid.pvalue<0.2 & !is.na(tbl$TvsMid.pvalue), "T!=Mid", "T=Mid")
-  tbl$TvsP1.reg <- ifelse(abs(tbl$TvsP1)>log2fc.threshold & tbl$TvsP1.pvalue<0.2 & !is.na(tbl$TvsP1.pvalue), "T!=P1", "T=P1")
-  tbl$TvsP2.reg <- ifelse(abs(tbl$TvsP2)>log2fc.threshold & tbl$TvsP2.pvalue<0.2 & !is.na(tbl$TvsP2.pvalue), "T!=P2", "T=P2")
-  tbl$P1vsP2.reg <- ifelse(abs(tbl$P1vsP2)>log2fc.threshold & tbl$P1vsP2.pvalue<0.2 & !is.na(tbl$P1vsP2.pvalue), ifelse(tbl$P1vsP2>log2fc.threshold & tbl$P1vsP2.pvalue<0.2 & !is.na(tbl$P1vsP2.pvalue), "P1>P2","P1<P2"), "P1=P2")
+  tbl$additivity <- ifelse(abs(tbl$TvsMid)>log2fc.threshold & tbl$TvsMid.pvalue<0 & !is.na(tbl$TvsMid.pvalue), "T!=Mid", "T=Mid")
+  tbl$TvsP1.reg <- ifelse(abs(tbl$TvsP1)>log2fc.threshold & tbl$TvsP1.pvalue<0 & !is.na(tbl$TvsP1.pvalue), "T!=P1", "T=P1")
+  tbl$TvsP2.reg <- ifelse(abs(tbl$TvsP2)>log2fc.threshold & tbl$TvsP2.pvalue<0 & !is.na(tbl$TvsP2.pvalue), "T!=P2", "T=P2")
+  tbl$P1vsP2.reg <- ifelse(abs(tbl$P1vsP2)>log2fc.threshold & tbl$P1vsP2.pvalue<0 & !is.na(tbl$P1vsP2.pvalue), ifelse(tbl$P1vsP2>log2fc.threshold & tbl$P1vsP2.pvalue<0 & !is.na(tbl$P1vsP2.pvalue), "P1>P2","P1<P2"), "P1=P2")
   
   # together
   tbl$class <- paste(tbl$P1vsP2.reg, tbl$additivity, tbl$TvsP1.reg, tbl$TvsP2.reg, sep=";")
@@ -149,7 +149,7 @@ classDominance<-function(TvsMid, TvsP1, TvsP2, P1vsP2, log2fc.threshold=0, rever
 
 ## Part 5 ceRNA network (as miRNA-sponge)
 ![Function of circRNA](https://www.embopress.org/cms/asset/9bf961e0-b7cc-4e9a-8a6b-33a953b19846/embj2018100836-fig-0001-m.jpg)
-From: [Past, present, and future of circRNAs](https://www.embopress.org/doi/full/10.15252/embj.2018100836)
+From: [Past, present, and future of circRNAs](https://www.embopress.org/doi/full/105252/embj018100836)
 by *Ines Lucia Patop, Stas Wüst and Sebastian Kadener*
 
 **miRNA was the bridge of the network, connected the circRNA and mRNA**

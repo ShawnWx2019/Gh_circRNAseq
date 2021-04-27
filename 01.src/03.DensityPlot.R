@@ -35,27 +35,27 @@ names(data.len) = c("circRNA_id","Type","full_length")
 fontsize = 12
 ## draw main plot
 p = ggplot(data = data.len,mapping = aes(x = full_length, fill = Type)) + 
-  geom_density(alpha = 0.4)+
+  geom_density(alpha = 0)+
   scale_fill_manual(values = c("#FF69B4","#00FF7F","#FFD700"))+
   geom_vline(aes(xintercept=3000), color = "blue",linetype="dashed")+
   geom_segment(aes(x = 3000,y = 5e-04, xend = 8000, yend = 5e-04),
-               arrow = arrow(length = unit(0.1,"inches")),
+               arrow = arrow(length = unit(0,"inches")),
                color = "blue",
                linetype = "dashed"
                )+
   theme_linedraw() +
-  theme(panel.grid.major=element_line(colour = "grey",linetype = 2, size = 0.25),
-        panel.grid.minor=element_line(colour = "grey",linetype = 2, size = 0.25))+
+  theme(panel.grid.major=element_line(colour = "grey",linetype = 2, size = 05),
+        panel.grid.minor=element_line(colour = "grey",linetype = 2, size = 05))+
   labs(x = "bp",y = "Density",fontsize = fontsize)+
   xlim(0,20000)+
   theme(legend.position = "top")
 # draw inset plot
 p1 = ggplot(data = data.len,mapping = aes(x = full_length, fill = Type)) + 
-  geom_density(alpha = 0.4)+
+  geom_density(alpha = 0)+
   scale_fill_manual(values = c("#FF69B4","#00FF7F","#FFD700"))+
   theme_linedraw() +
-  theme(panel.grid.major=element_line(colour = "grey",linetype = 2, size = 0.25),
-        panel.grid.minor=element_line(colour = "grey",linetype = 2, size = 0.25))+
+  theme(panel.grid.major=element_line(colour = "grey",linetype = 2, size = 05),
+        panel.grid.minor=element_line(colour = "grey",linetype = 2, size = 05))+
   labs(x = "bp",y = "Density",fontsize = fontsize)+
   xlim(0,3000)+
   theme(legend.position = "none")
@@ -63,7 +63,7 @@ p1 = ggplot(data = data.len,mapping = aes(x = full_length, fill = Type)) +
 ## Merge plots
 p.inset = ggdraw()+
   draw_plot(p)+
-  draw_plot(p1,x = 0.47,y = .5,width = .5,height = .4)
+  draw_plot(p1,x = 07,y = ,width = ,height = )
 ggsave(filename = "~/03.Project/03.circRNA/CircRNAVersion3/04.result/01.Indentification/LenDensityPlot.pdf",
        plot = p.inset,
        width = 10,

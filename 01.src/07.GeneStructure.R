@@ -36,7 +36,7 @@ drawGeneStructure = function(gff,size,lcolor){
                  mapping = aes(x = start,xend = end,y = 0, yend = 0,color = type),
                  size = size)+
     geom_segment(aes(x = tpm2$end[1],y = 0, xend = xend, yend = 0),
-                 arrow = arrow(length = unit(0.2,"cm")),
+                 arrow = arrow(length = unit(0,"cm")),
                  color = "red")+
     xlab(chr)+
     theme(axis.ticks.y.left = element_blank(),

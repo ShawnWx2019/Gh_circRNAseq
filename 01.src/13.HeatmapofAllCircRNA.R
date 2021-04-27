@@ -59,13 +59,13 @@ data.plot$Subgenome = factor(data.plot$Subgenome,levels = c("At","Dt","Contig"))
 data.plot$Tissue = factor(data.plot$Tissue,levels = c("fiber","leaf","ovule"))
 data.plot$postion = c(228,114,14,178,86,3,295,114,10)
 P  = ggplot(data.plot,aes(x = Tissue,y = Num, fill = Subgenome))+
-  geom_bar(stat ="identity",width = 0.6,position =position_stack(reverse = F))+
+  geom_bar(stat ="identity",width = 0,position =position_stack(reverse = F))+
   scale_fill_brewer(palette = 'Accent')+
   labs(y = "CircRNA number")+
   theme_bw()+
-  geom_text(aes(label = data.plot$Num,y = data.plot$postion),vjust = -0.5,size = 3,hjust = 0.5)+
+  geom_text(aes(label = data.plot$Num,y = data.plot$postion),vjust = -0,size = 3,hjust = 0)+
   theme(legend.position = "top",axis.title.x = element_blank(),
-        panel.grid = element_line(linetype = "dashed",colour = "grey",size = 0.1),
+        panel.grid = element_line(linetype = "dashed",colour = "grey",size = 0),
         panel.border = element_rect(size = 1),
         strip.background = element_rect(size = 1,fill = "#FAFAD2"),
         strip.text = element_text(face = "bold.italic"))

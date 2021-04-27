@@ -4,7 +4,7 @@
 #       Author: Shawn Wang
 #       Date: Sep 04, 2020
 #       Reference: https://github.com/Wendellab/CisTransRegulation/blob/master/inheritanceMode.r
-#       Reference DOI: | https://doi.org/10.1038/s41467-019-13386-w 
+#       Reference DOI: | https://doi.org/10038/s41467-019-13386-w 
 #       Reference Author: Guanjing Hu, Ying Bao & Jonathan F. Wendel
 #################################################
 ## notation: readcount value was update in Sep 01, 2020; the raw 
@@ -222,10 +222,10 @@ classDominance<-function(TvsMid, TvsP1, TvsP2, P1vsP2, log2fc.threshold=0, rever
   tbl$P1vsP2[is.na(tbl$P1vsP2)] =0
   
   # judge
-  tbl$additivity <- ifelse(abs(tbl$TvsMid)>log2fc.threshold & tbl$TvsMid.pvalue<0.2 & !is.na(tbl$TvsMid.pvalue), "T!=Mid", "T=Mid")
-  tbl$TvsP1.reg <- ifelse(abs(tbl$TvsP1)>log2fc.threshold & tbl$TvsP1.pvalue<0.2 & !is.na(tbl$TvsP1.pvalue), "T!=P1", "T=P1")
-  tbl$TvsP2.reg <- ifelse(abs(tbl$TvsP2)>log2fc.threshold & tbl$TvsP2.pvalue<0.2 & !is.na(tbl$TvsP2.pvalue), "T!=P2", "T=P2")
-  tbl$P1vsP2.reg <- ifelse(abs(tbl$P1vsP2)>log2fc.threshold & tbl$P1vsP2.pvalue<0.2 & !is.na(tbl$P1vsP2.pvalue), ifelse(tbl$P1vsP2>log2fc.threshold & tbl$P1vsP2.pvalue<0.2 & !is.na(tbl$P1vsP2.pvalue), "P1>P2","P1<P2"), "P1=P2")
+  tbl$additivity <- ifelse(abs(tbl$TvsMid)>log2fc.threshold & tbl$TvsMid.pvalue<0 & !is.na(tbl$TvsMid.pvalue), "T!=Mid", "T=Mid")
+  tbl$TvsP1.reg <- ifelse(abs(tbl$TvsP1)>log2fc.threshold & tbl$TvsP1.pvalue<0 & !is.na(tbl$TvsP1.pvalue), "T!=P1", "T=P1")
+  tbl$TvsP2.reg <- ifelse(abs(tbl$TvsP2)>log2fc.threshold & tbl$TvsP2.pvalue<0 & !is.na(tbl$TvsP2.pvalue), "T!=P2", "T=P2")
+  tbl$P1vsP2.reg <- ifelse(abs(tbl$P1vsP2)>log2fc.threshold & tbl$P1vsP2.pvalue<0 & !is.na(tbl$P1vsP2.pvalue), ifelse(tbl$P1vsP2>log2fc.threshold & tbl$P1vsP2.pvalue<0 & !is.na(tbl$P1vsP2.pvalue), "P1>P2","P1<P2"), "P1=P2")
   
   # together
   tbl$class <- paste(tbl$P1vsP2.reg, tbl$additivity, tbl$TvsP1.reg, tbl$TvsP2.reg, sep=";")
@@ -330,7 +330,7 @@ FourQuadrantChart = function(data,filename,filepath,catecolor){
   p = ggplot(tmp3,aes(x = TvsP1, y = TvsP2, color = category)) + 
     geom_hline(aes(yintercept=0), colour="black", linetype="dashed")+
     geom_vline(aes(xintercept = 0), color = "black", linetype = "dashed")+
-    geom_point(size = 0.8)+
+    geom_point(size = 0)+
     scale_color_manual(values = tmp2$color)+
     ylim(-10,10)+ 
     xlim(-10,10)+
@@ -366,6 +366,6 @@ p_all = ggarrange(pF,pL,pO,
           ncol = 3,labels = c("A","B","C"),
           common.legend = TRUE,
           legend = "bottom")
-ggsave(plot = p_all,filename = "06.ExpPattern/finalplot.pdf",width = 18,height =6.5 )
+ggsave(plot = p_all,filename = "06.ExpPattern/finalplot.pdf",width = 18,height =6 )
 
 

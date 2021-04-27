@@ -13,7 +13,7 @@ library(networkD3)
 options(stringsAsFactors = F)
 source("~/02.MyScript/BioScript/01.R/ShawnRToolkit.R")
 #####=======01. import data=========
-## 1.1 import gene2goid
+## 1 import gene2goid
 path = "/Volumes/Samsung_T5/03.circRNA/CircRNAVersion3/03.process/10.SankeyPlot/"
 g2go = BatchReadTable(path = path,pattern = "01.*",sep = "\t",header = F,quote = NULL,stringsAsFactors = F)
 ## name
@@ -188,10 +188,10 @@ getsankeydata = function(link.all){
   node.target = data.frame(target = node,
                            targetID = seq(1:length(node))-1)
   
-  linkall.1 = left_join(link.all,node.source,by = "source") %>%
+  linkall = left_join(link.all,node.source,by = "source") %>%
     left_join(.,node.target,by = "target")
   x = list(node = node.all,
-           link = linkall.1)
+           link = linkall)
   return(x)
 }
 data = getsankeydata(link.all = final)

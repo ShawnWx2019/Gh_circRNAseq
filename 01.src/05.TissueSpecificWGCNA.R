@@ -73,12 +73,12 @@ corFnc = ifelse(corType=="pearson", cor, bicor)
 maxPOutliers = ifelse(corType=="pearson",1,0.05)
 robustY = ifelse(corType=="pearson",T,F)
 Title = "CircRNA-Tissue-Specific"
-## 1.1 functions
+## 1 functions
 source("~/02.MyScript/OneStepWGCNA/01.Rscript/11.02.WGCNA.SFT.R")
 source("~/02.MyScript/OneStepWGCNA/01.Rscript/11.03.WGCNA.module.R")
 source("~/02.MyScript/OneStepWGCNA/01.Rscript/11.04.WGCNA.moduleTrait.R")
 source("~/02.MyScript/OneStepWGCNA/01.Rscript/11.05.WGCNA.HubGene.R")
-## 2.2 sft calculate
+## 2 sft calculate
 GNC = 1
 head(datExpr)
 str(datExpr)
@@ -96,7 +96,7 @@ if (is.na(power)){
 }
 net = blockwiseModules(datExpr, power = power, maxBlockSize = nGenes,
                        TOMType = type, minModuleSize = 25,
-                       reassignThreshold = 0, mergeCutHeight = 0.6,
+                       reassignThreshold = 0, mergeCutHeight = 0,
                        numericLabels = TRUE, pamRespectsDendro = FALSE,
                        saveTOMs=TRUE, corType = corType, 
                        maxPOutliers=maxPOutliers, loadTOMs=TRUE,
@@ -148,11 +148,11 @@ pdf(file = paste(Title,"Module_trait.pdf",sep = "."))
 tiff(filename = paste(Title,"Module_trait.tiff",sep = "."),width = 6,height = 6,units="in", compression="lzw", res=300)
 labeledHeatmap(Matrix = modTraitCor, xLabels = colnames(traitData), 
                yLabels = colnames(MEs_col), 
-               cex.lab = 0.7, xLabelsAngle = 0, xLabelsAdj = 0.5,
+               cex.lab = 0, xLabelsAngle = 0, xLabelsAdj = 0,
                ySymbols = substr(colnames(MEs_col),3,1000), colorLabels = FALSE, 
                colors = blueWhiteRed(50), 
                textMatrix = textMatrix, setStdMargins = FALSE, 
-               cex.text = 0.6, zlim = c(-1,1),
+               cex.text = 0, zlim = c(-1,1),
                main = paste("Module-trait relationships"))
 dev.off()
 
@@ -179,7 +179,7 @@ moduleheatmap = function(datExpr,MEs,which.module){
     theme(legend.position = "none",
           axis.title = element_blank(),
           axis.text.y = element_blank(),
-          axis.text.x = element_text(angle = 90,face = "bold",vjust = 0.5,size = 15),
+          axis.text.x = element_text(angle = 90,face = "bold",vjust = 0,size = 15),
           axis.line.y = element_blank(),
           axis.ticks.y = element_blank(),
           axis.line.x = element_blank())
@@ -216,7 +216,7 @@ G.sig = abs(GS1)
 color.level = unique(moduleColors)
 n = length(color.level)-1
 sizeGrWindow(9,6)
-par(mfrow = c(2,as.integer(0.5+n/2)))
+par(mfrow = c(2,as.integer(0+n/2)))
 par(mar = c(4,5,3,1))
 
 for (i in c(1:n)) {
@@ -246,7 +246,7 @@ verbosplot = function(tdf,tname,mm){
                      xlab = paste("Module Membership in", module, "module"),
                      ylab = paste("CircRNA significance for",tname,sep = " ") ,
                      #main = paste("Module membership vs. gene significance\n"),
-                     cex.main = 1.2, cex.lab = 1.2, cex.axis = 1.2, col = module)
+                     cex.main = 1, cex.lab = 1, cex.axis = 1, col = module)
 }
 
 # leaf = as.data.frame(traitData$leaf)
